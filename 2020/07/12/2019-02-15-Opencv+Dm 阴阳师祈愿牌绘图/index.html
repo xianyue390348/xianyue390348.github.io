@@ -5,15 +5,25 @@
   
 
   
-  <title>风花雪月的技术博客</title>
+  <title>Opencv+Dm 阴阳师祈愿牌绘图 | 风花雪月的技术博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="风花雪月的技术博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="例子： 思路如下 1.首先选区一张图片 2.丢进PS里进行二值化，转换成黑白图，调整合适的阈值就会变成这个样子 图像-》模式-》灰度图像-》调整-》阈值 选择你肉眼看过去合适的阈值 3.接着开始代码的编写 操作就是 读取图片 -》 二值化图片 -》 将其绘制在屏幕上 语言选用Python 图片处理使用Opencv 绘制在屏幕上的操作可以自己发挥sendmessage 什么都可以，我图方便使用 某c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Opencv+Dm 阴阳师祈愿牌绘图">
+<meta property="og:url" content="http://yoursite.com/2020/07/12/2019-02-15-Opencv+Dm%20%E9%98%B4%E9%98%B3%E5%B8%88%E7%A5%88%E6%84%BF%E7%89%8C%E7%BB%98%E5%9B%BE/index.html">
 <meta property="og:site_name" content="风花雪月的技术博客">
+<meta property="og:description" content="例子： 思路如下 1.首先选区一张图片 2.丢进PS里进行二值化，转换成黑白图，调整合适的阈值就会变成这个样子 图像-》模式-》灰度图像-》调整-》阈值 选择你肉眼看过去合适的阈值 3.接着开始代码的编写 操作就是 读取图片 -》 二值化图片 -》 将其绘制在屏幕上 语言选用Python 图片处理使用Opencv 绘制在屏幕上的操作可以自己发挥sendmessage 什么都可以，我图方便使用 某c">
 <meta property="og:locale" content="zh">
+<meta property="og:image" content="http://yoursite.com/2020/07/assets/eyQ5-dxajZeT3cSzt-l4.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/assets/eyQ5-4y5dKbToS5w-5t.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/07/assets/eyQ5-414zK1kToS6k-5t.jpg">
+<meta property="article:published_time" content="2020-07-12T08:06:47.179Z">
+<meta property="article:modified_time" content="2020-04-06T13:23:36.331Z">
 <meta property="article:author" content="FengHuaXueYue">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="opencv">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/assets/eyQ5-dxajZeT3cSzt-l4.jpg">
   
     <link rel="alternate" href="/atom.xml" title="风花雪月的技术博客" type="application/atom+xml">
   
@@ -66,84 +76,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-2020-04-07-Frida dex dumper" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/12/2020-04-07-Frida%20dex%20dumper/" class="article-date">
-  <time datetime="2020-07-12T08:06:47.181Z" itemprop="datePublished">2020-07-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/12/2020-04-07-Frida%20dex%20dumper/">Android Frida Dump Dex</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>因为手头没有root的实体机，于是直接选用雷神模拟器</p>
-<p><img src="../../assets/image-20200407212055491.png" alt="image-20200407212055491"></p>
-<p>创建了个virtualenv，豆瓣源安装以下库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install numpy matplotlib frida-tools -i http://pypi.douban.com/simple --trusted-host pypi.douban.com</span><br></pre></td></tr></table></figure>
-
-<p>模拟器本生是x86 abi</p>
-<p><img src="../../assets/image-20200407212729560.png" alt="image-20200407212729560"></p>
-<p>下载对应的frida server，然后adb push，chmod 启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/frida/frida/releases/download/12.8.20/frida-server-12.8.20-android-x86.xz</span><br><span class="line">adb -s emulator-5554 push C:\Users\jiang\Desktop\frida-server-12.8.20-android-x86 /data/<span class="built_in">local</span>/tmp/frida-server</span><br><span class="line">adb -s emulator-5554 shell</span><br><span class="line"><span class="built_in">cd</span> /data/<span class="built_in">local</span>/tmp/</span><br><span class="line">chmod 777 *</span><br><span class="line">./frida-server</span><br></pre></td></tr></table></figure>
-<p>以上完成frida环境的部署，然后回到虚拟环境中测试</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">frida-ps -U</span><br></pre></td></tr></table></figure>
-
-<p><img src="../../assets/image-20200407213956642.png" alt="image-20200407213956642"></p>
-<p>使用的是：<a href="https://github.com/GuoQiang1993/Frida-Apk-Unpack" target="_blank" rel="noopener">https://github.com/GuoQiang1993/Frida-Apk-Unpack</a></p>
-<p>利用frida hook libart.so中的OpenMemory或OpenCommon(Android N以后)方法，拿到内存中dex的地址，计算出dex文件的大小，从内存中将dex导出。</p>
-<p>js文件地址：<a href="https://github.com/GuoQiang1993/Frida-Apk-Unpack/blob/master/dexDump.js" target="_blank" rel="noopener">https://github.com/GuoQiang1993/Frida-Apk-Unpack/blob/master/dexDump.js</a></p>
-<p>实际查看代码发现作者对不同系统做了很多优化兼容</p>
-<p>Android 4: hook dvmDexFileOpenPartial</p>
-<p>Android 5: hook OpenMemory</p>
-<p>after Android 5: hook OpenCommon</p>
-<p>核心部分如下，hook后判断magic number是否符合，接着直接根据参数获取dex文件结构体指针，接着在0x20处获取dex_size，然后dump整个dex文件。(注意进制)</p>
-<p><img src="../../assets/image-20200407220843243.png" alt="image-20200407220843243"></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> address = <span class="built_in">parseInt</span>(begin,<span class="number">16</span>) + <span class="number">0x20</span>;</span><br><span class="line"><span class="keyword">var</span> dex_size = Memory.readInt(ptr(address));</span><br><span class="line">LogPrint(<span class="string">"dex_size :"</span> + dex_size);</span><br><span class="line"><span class="keyword">var</span> dex_path = <span class="string">"/data/data/"</span> + processName + <span class="string">"/"</span> + dex_size + <span class="string">".dex"</span>;</span><br><span class="line"><span class="keyword">var</span> dex_file = <span class="keyword">new</span> File(dex_path, <span class="string">"wb"</span>);</span><br><span class="line">dex_file.write(Memory.readByteArray(begin, dex_size));</span><br></pre></td></tr></table></figure>
-
-<p>拿出了之前自己写的超级简陋的壳出来鞭尸。</p>
-<p>frida -U -f com.test.stub.myapplication -l dexDump.js –no-pause</p>
-<p><img src="../../assets/image-20200407215346598.png" alt="image-20200407215346598"></p>
-<p>可见dump了2次dex文件（第三次跟第二次是一样的，分别是壳的dex文件和原程序的dex文件，壳代码主要为下）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//配置动态加载环境，获取主线程对象</span></span><br><span class="line">String apkPath = getCacheDir() + <span class="string">"/classes_enc.dex"</span>;</span><br><span class="line">String odexPath = getCacheDir() + <span class="string">"/classes_enc.dex"</span>;</span><br><span class="line">String libPath = String.valueOf(getCacheDir());</span><br><span class="line"></span><br><span class="line">Object currentActivityThread = RefInvoke.invokeStaticMethod(<span class="string">"android.app.ActivityThread"</span>, <span class="string">"currentActivityThread"</span>, <span class="keyword">new</span> Class[]&#123;&#125;, <span class="keyword">new</span> Object[]&#123;&#125;);</span><br><span class="line">String packageName = <span class="keyword">this</span>.getPackageName();</span><br><span class="line">ArrayMap mPackage = (ArrayMap) RefInvoke.getFieldOjbect(<span class="string">"android.app.ActivityThread"</span>, currentActivityThread, <span class="string">"mPackages"</span>);</span><br><span class="line">WeakReference wr = (WeakReference) mPackage.get(packageName);</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建被加壳APK的DexClassLoader对象  加载apk内的类和本地代码（c/c++代码）</span></span><br><span class="line">DexClassLoader dexClassLoader = <span class="keyword">new</span> DexClassLoader(apkPath, odexPath, libPath, (ClassLoader) RefInvoke.getFieldOjbect(<span class="string">"android.app.LoadedApk"</span>, wr.get(), <span class="string">"mClassLoader"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//把当前进程的DexClassLoader 设置成了被加壳apk的DexClassLoader</span></span><br><span class="line">RefInvoke.setFieldOjbect(<span class="string">"android.app.LoadedApk"</span>, <span class="string">"mClassLoader"</span>, wr.get(), dexClassLoader);</span><br></pre></td></tr></table></figure>
-
-<p>取回dex文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adb -s emulator-5554 pull /data/data/com.test.stub.myapplication/2939824.dex C:\Users\jiang\Desktop\1.dex</span><br><span class="line"></span><br><span class="line">adb -s emulator-5554 pull /data/data/com.test.stub.myapplication/2942424.dex C:\Users\jiang\Desktop\2.dex</span><br></pre></td></tr></table></figure>
-
-<p><img src="../../assets/image-20200407215858035.png" alt="image-20200407215858035"></p>
-<p>参考链接<br><a href="https://bbs.pediy.com/thread-252184.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-252184.htm</a></p>
-<p><a href="https://github.com/GuoQiang1993/Frida-Apk-Unpack/blob/master/dexDump.js" target="_blank" rel="noopener">https://github.com/GuoQiang1993/Frida-Apk-Unpack/blob/master/dexDump.js</a></p>
-<p><a href="https://www.jianshu.com/p/4e54736d0dfa" target="_blank" rel="noopener">https://www.jianshu.com/p/4e54736d0dfa</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/12/2020-04-07-Frida%20dex%20dumper/" data-id="ckcisxy8o0001n0udg097fgnl" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/" rel="tag">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Frida/" rel="tag">Frida</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2019-02-15-Opencv+Dm 阴阳师祈愿牌绘图" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2019-02-15-Opencv+Dm 阴阳师祈愿牌绘图" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/12/2019-02-15-Opencv+Dm%20%E9%98%B4%E9%98%B3%E5%B8%88%E7%A5%88%E6%84%BF%E7%89%8C%E7%BB%98%E5%9B%BE/" class="article-date">
   <time datetime="2020-07-12T08:06:47.179Z" itemprop="datePublished">2020-07-12</time>
@@ -156,8 +89,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/12/2019-02-15-Opencv+Dm%20%E9%98%B4%E9%98%B3%E5%B8%88%E7%A5%88%E6%84%BF%E7%89%8C%E7%BB%98%E5%9B%BE/">Opencv+Dm 阴阳师祈愿牌绘图</a>
+    <h1 class="article-title" itemprop="name">
+      Opencv+Dm 阴阳师祈愿牌绘图
     </h1>
   
 
@@ -196,11 +129,23 @@
     </footer>
   </div>
   
-</article>
-
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/12/2020-04-07-Frida%20dex%20dumper/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android Frida Dump Dex
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
   
-
+</article>
 
 </section>
         
